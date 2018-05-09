@@ -1,0 +1,158 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<button type="button" class="btn btn-primary" data-toggle="modal" id="btnOpenCreate">Create</button>
+<br />
+<br />
+<div role="tabpanel">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#service" aria-controls="service" role="tab" data-toggle="tab" id="Admin-tablist-Service">服務項目</a></li>
+        <li role="presentation"><a href="#equipment" aria-controls="equipment" role="tab" data-toggle="tab" id="Admin-tablist-Equipment">裝置管理</a></li>
+        <li role="presentation"><a href="#license" aria-controls="license" role="tab" data-toggle="tab" id="Admin-tablist-License">證照管理</a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="service">
+            <br />
+            <div id="gridService"></div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade in" id="equipment">
+            <br />
+            <div id="gridEquipment"></div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade in" id="license">
+            <br />
+            <div id="gridLicense"></div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-Admin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        <i class="fa fa-times"></i>
+                    </span>
+                </button>
+                <h4 class="modal-title"><span id="modal-Admin-Title"></span></h4>
+            </div>
+            <div class="modal-body">
+                <table class="serviceTable">
+                    <tr>
+                        <td style="vertical-align:text-top;"><h4>服務類型：</h4></td>
+                        <td><div id="Admin-Service_Item"></div></td>
+                    </tr>
+                    <tr>
+                        <td><h4>服務名稱：</h4></td>
+                        <td><input type="text" class="form-control" id="Admin-ServiceName" required></td>
+                    </tr>
+                    <tr>
+                        <td><h4>狀態：</h4></td>
+                        <td>
+                            <div class="checkbox" id="Admin-Service-Hide">
+                                <label><input type="checkbox">隱藏</label>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="equipmentTable">
+                    <tr>
+                        <td style="vertical-align:text-top;"><h4>類型：</h4></td>
+                        <td>
+                            <div id="Admin-Equipment-type">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="Admin-Equipment-type" value="0">Beacon
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="Admin-Equipment-type" value="1">Mobile
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="Admin-Equipment-type" value="2">NFC
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="Admin-Equipment-type" value="3">QRCode
+                                    </label>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><h4>使用者：</h4></td>
+                        <td><input id="Admin-Equipment-User" style="width: 230px;" /></td>
+                    </tr>
+                    <tr>
+                        <td><h4>識別碼：</h4></td>
+                        <td><input type="text" class="form-control" id="Admin-Equipment-MACAddress" required></td>
+                    </tr>
+                    <tr>
+                        <td><h4>狀態：</h4></td>
+                        <td>
+                            <div class="checkbox" id="Admin-Equipment-Status">
+                                <label><input type="checkbox">啟用</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align:text-top;">
+                            <h4>備註：</h4>
+                        </td>
+                        <td>
+                            <textarea class="form-control" style="resize:none;" placeholder="備註" id="Admin-Equipment-Summary"></textarea>
+                        </td>
+                    </tr>
+                </table>
+                <table class="licenseTable">
+                    <tr>
+                        <td><h4>名稱：</h4></td>
+                        <td><input type="text" class="form-control" id="Admin-License-Name" required></td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align:text-top;">
+                            <h4>備註：</h4>
+                        </td>
+                        <td>
+                            <textarea class="form-control" style="resize:none;" placeholder="備註" id="Admin-License-Summary"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnCheckDelete">Delete</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="btnUpdate">Update</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="btnCreate">Create</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+                <h4 class="modal-title">Check</h4>
+            </div>
+            <div class="modal-body">
+                確認要刪除？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnDelete">Delete</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Styles.Render("~/Content/site/Admin.css")
+@Scripts.Render("~/Scripts/Admin/Index.js")

@@ -1,0 +1,40 @@
+﻿.tableForm {
+    margin: 0px auto;
+    width: 100%;
+}
+
+
+.tableTitleFont a {
+    color: red;
+}
+
+/*#region Schedule */
+
+.k-scheduler-toolbar,
+.k-scheduler-footer {
+    z-index: 100;
+}
+
+.k-scheduler-monthview .k-scheduler-table td {
+    height: 150px !important;
+}
+
+/*#endregion */
+
+
+/*#region Map */
+
+#map {
+    height: 500px;
+    width: 100%;
+}
+
+#right-panel {
+    height: 500px;
+    width: 100%;
+    padding-left: 20px;
+    overflow: auto;
+    display: none;
+}
+
+/*#endregion */

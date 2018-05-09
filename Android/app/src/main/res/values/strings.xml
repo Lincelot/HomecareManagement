@@ -1,0 +1,85 @@
+<resources>
+    <string name="app_name">Homecare</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="default_text">預設文字</string>
+
+    <!-- Snackbar -->
+    <string name="snackbar_update_server_error">請稍後在試 …</string>
+    <string name="snackbar_update_error">Error !! Device not recognized</string>
+    <string name="snackbar_uuid_copy">已複製至剪貼簿 !!</string>
+
+    <!-- image text -->
+    <string name="MenuTopLogo">MenuTopLogo</string>
+    <string name="MainLogo">MianLogo</string>
+
+    <!-- Menu  -->
+    <string name="nav_menu_main">首頁</string>
+    <string name="nav_menu_nfc">NFC</string>
+    <string name="nav_menu_qrcode">QRCode</string>
+    <string name="nav_menu_beacon">附近Beacon</string>
+    <string name="nav_menu_Form">Form</string>
+    <string name="nav_menu_Preferences">偏好設定</string>
+    <string name="nav_menu_refresh">Refresh</string>
+    <string name="nav_menu_showSerialID">裝置唯一碼</string>
+
+    <!-- Setting -->
+    <string name="setting_network_title">行動數據</string>
+    <string name="setting_network_content">開啟後當您使用網路時，系統服務業者可能會依網路資費方案向您收取額外費用。</string>
+    <string name="setting_update_title">更新提示</string>
+    <string name="setting_update_content">是否在每次開啟應用程式時詢問。</string>
+    <string name="setting_scanPeriodMillis_title">搜尋時間(秒)</string>
+    <string name="setting_scanPeriodMillis_content">時間越長越精準</string>
+    <string name="setting_scanPeriodMillis_default">5</string>
+    <string name="setting_waitTimeMillis_title">間隔時間(秒)</string>
+    <string name="setting_waitTimeMillis_content">時間越短越精準</string>
+    <string name="setting_waitTimeMillis_default">60</string>
+
+    <string-array name="setting_scanPeriodMillis_item">
+        <item>2</item>
+        <item>5</item>
+        <item>10</item>
+    </string-array>
+    <string-array name="setting_waitTimeMillis_item">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>120</item>
+    </string-array>
+
+    <!-- AlertDialog -->
+    <string name="alertdialog_close">關閉</string>
+
+    <string name="alertdialog_showSerialID_title">裝置唯一碼</string>
+    <string name="alertdialog_showSerialID_copy">複製</string>
+    <string name="alertdialog_update_title">Update</string>
+    <string name="alertdialog_update_message">是否要立即更新資料庫？</string>
+    <string name="alertdialog_update_btnupdate">更新</string>
+    <string name="alertdialog_networkstatus_title">注意 !!</string>
+    <string name="alertdialog_networkstatus_message">請確認網路狀態 …</string>
+    <string name="alertdialog_formrecord_send_title">再次確認</string>
+    <string name="alertdialog_formrecord_send">送出</string>
+    <string name="alertdialog_formrecord_send_close">取消</string>
+
+    <!-- ProgressDialog -->
+
+    <string name="progressDialog_Download_Title">資料下載中</string>
+    <string name="form_worklist_default_name">王大明</string>
+    <string name="form_worklist_default_start">11:11:11</string>
+    <string name="form_worklist_default_end">22:22:22</string>
+    <string name="img_form_worklist">form_worklist_imageView</string>
+
+    <!-- Beacon -->
+    <string name="beacon_default_title">Device Name</string>
+    <string name="img_beacon">img_beacon</string>
+
+    <!-- Form Record -->
+    <string name="form_record_write">該班次已填寫！</string>
+    <string name="form_record_workrecord_title">工作時數紀錄</string>
+    <string name="form_record_caserecord_title">個案服務紀錄</string>
+    <string name="title_activity_from_record">Form</string>
+
+
+</resources>

@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Map";
+}
+<table>
+    <tr>
+        <td><h4>督導：&nbsp;&nbsp;</h4></td>
+        <td><input id="Supervisor-Map-User" style="width: 230px;" /></td>
+    </tr>
+</table>
+<br />
+<br />
+<div id="map"></div>
+<div id="right-panel"></div>
+
+@Styles.Render("~/Content/site/Supervisor.css")
+@Scripts.Render("~/Scripts/Supervisor/Map.js")
+@Scripts.Render("https://maps.googleapis.com/maps/api/js?key=AIzaSyBpw6EPhcPpIuU9p5ufgZ8uWhoaOKMhYHI&callback=initMap")

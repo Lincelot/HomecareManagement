@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_menu_main"
+            android:icon="@drawable/icon_menu_main"
+            android:title="@string/nav_menu_main" />
+        <item
+            android:id="@+id/nav_menu_beacon"
+            android:icon="@drawable/icon_menu_beacon"
+            android:title="@string/nav_menu_beacon" />
+        <item
+            android:id="@+id/nav_menu_Form"
+            android:icon="@drawable/icon_menu_form"
+            android:title="@string/nav_menu_Form" />
+        <item
+            android:id="@+id/nav_menu_Preferences"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/nav_menu_Preferences" />
+    </group>
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_menu_refresh"
+                android:icon="@drawable/icon_menu_refresh"
+                android:title="@string/nav_menu_refresh" />
+            <item
+                android:id="@+id/nav_menu_showSerialID"
+                android:icon="@drawable/ic_menu_share"
+                android:title="@string/nav_menu_showSerialID" />
+        </menu>
+    </item>
+
+</menu>

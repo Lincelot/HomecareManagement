@@ -1,0 +1,169 @@
+﻿@{
+    ViewBag.Title = "Schedule";
+}
+<table>
+    <tr>
+        <td>
+            <h4>督導：&nbsp;&nbsp;</h4>
+        </td>
+        <td>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <span id="SupervisorListText">---請選擇---</span>&nbsp;&nbsp;<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="SupervisorList">
+                    <li><a href="#0">---請選擇---</a></li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+</table>
+<br />
+<br />
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal" id="btnCreate">Create</button>
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#createModal" id="btnEdit" style="display:none;">Edit</button>
+<br />
+<br />
+<div id="scheduler"></div>
+<!-- Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+                <h4 class="modal-title"><span id="modalTitle"></span></h4>
+            </div>
+            <div class="modal-body">
+                <table class="tableTitleFont">
+                    <tr>
+                        <td><h4>照服員：</h4></td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span id="AttendantListText">---請選擇---</span>&nbsp;&nbsp;<span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="AttendantList">
+                                    <li><a href="#0">---請選擇---</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><div class="floatDiv"><h5><span id="create_AttendantMsg" class="infoMsg"></span></h5></div></td>
+                    </tr>
+                    <tr>
+                        <td><h4>案主：</h4></td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span id="EmployerListText">---請選擇---</span>&nbsp;&nbsp;<span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="EmployerList">
+                                    <li><a href="#0">---請選擇---</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><div class="floatDiv"><h5><span id="create_EmployerMsg" class="infoMsg"></span></h5></div></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>時薪：</h4>
+                        </td>
+                        <td>
+                            <div class="floatDiv"><input type="number" class="form-control text-center" id="pay" style="width:143px;" placeholder="數字" readonly></div>
+                            <div class="checkbox floatDiv" id="editPay">
+                                <label><input type="checkbox">編輯</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><div class="floatDiv"><h5><span id="create_payMsg" class="infoMsg"></span></h5></div></td>
+                    </tr>
+                    <tr>
+                        <td><h4>日期：</h4></td>
+                        <td><input id="datetimepicker_Date" style="width:150px;" /></td>
+                    </tr>
+                    <tr>
+                        <td><h4>開始時間：</h4></td>
+                        <td><input id="datetimepicker_Start" style="width:150px;" /></td>
+                    </tr>
+                    <tr>
+                        <td><h4>結束時間：</h4></td>
+                        <td>
+                            <div class="floatDiv">
+                                <input id="datetimepicker_End" style="width:150px;" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class="floatDiv">
+                                <h5><span id="create_datetimeMsg" class="errorMsg"></span></h5>
+                                <h5><span id="create_datetimeMsg2" class="infoMsg"></span></h5>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top"><h4>服務項目：</h4></td>
+                        <td><div id="serviceItem"></div></td>
+                    </tr>
+                    <tr>
+                        <td colspan=2><br /><hr /><br /></td>
+                    <tr>
+                        <td valign="top">
+                            <h4>其他：</h4>
+                        </td>
+                        <td>
+                            <div class="checkbox" id="chkRepeat">
+                                <label><input type="checkbox">循環（當月）</label>
+                            </div>
+                            <textarea class="form-control" rows="4" style="resize:none;" placeholder="備註" id="summary"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCancel">Close</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="btnSend">Create</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#delectModal" id="btnCheckDelect">Delect</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="btnUpdate">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="delectModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+                <h4 class="modal-title">Check</h4>
+            </div>
+            <div class="modal-body">
+                確認定要刪除？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnDelect">Delect</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="agenda-template" type="text/x-kendo-template">
+    <div class="template" style="width:186px;">
+        <h5>照服員：#: Attendant #</h5>
+        <h5>案主：#: Employer #</h5>
+        <h5>編輯者：#: LastEditer #</h5>
+        <h5>編輯時間：#: LastEditTime #</h5>
+    </div>
+</script>
+<script id="event-template" type="text/x-kendo-template">
+</script>
+@Styles.Render("~/Content/site/Supervisor.css")
+@Scripts.Render("~/Scripts/Supervisor/Schedule.js")

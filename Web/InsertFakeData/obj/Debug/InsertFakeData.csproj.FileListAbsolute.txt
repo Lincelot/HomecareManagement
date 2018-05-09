@@ -1,0 +1,10 @@
+\\Tomato-lab-z\data\Dropbox\Final Project\Coding\Chunhan\HomecareManagement\Web\InsertFakeData\obj\Debug\InsertFakeData.csprojResolveAssemblyReference.cache
+\\Tomato-lab-z\data\Dropbox\Final Project\Coding\Chunhan\HomecareManagement\Web\InsertFakeData\bin\Debug\ConsoleApplication1.exe.config
+\\Tomato-lab-z\data\Dropbox\Final Project\Coding\Chunhan\HomecareManagement\Web\InsertFakeData\bin\Debug\ConsoleApplication1.exe
+\\Tomato-lab-z\data\Dropbox\Final Project\Coding\Chunhan\HomecareManagement\Web\InsertFakeData\bin\Debug\ConsoleApplication1.pdb
+\\Tomato-lab-z\data\Dropbox\Final Project\Coding\Chunhan\HomecareManagement\Web\InsertFakeData\bin\Debug\MySql.Data.dll
+\\Tomato-lab-z\data\Dropbox\Final Project\Coding\Chunhan\HomecareManagement\Web\InsertFakeData\obj\Debug\ConsoleApplication1.exe
+\\Tomato-lab-z\data\Dropbox\Final Project\Coding\Chunhan\HomecareManagement\Web\InsertFakeData\obj\Debug\ConsoleApplication1.pdb
+C:\Users\dell\Dropbox\Final Project\Coding\Chunhan\HomecareManagement\Web\InsertFakeData\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\dell\Dropbox\Final Project\Coding\Chunhan\HomecareManagement\Web\InsertFakeData\obj\Debug\ConsoleApplication1.exe
+C:\Users\dell\Dropbox\Final Project\Coding\Chunhan\HomecareManagement\Web\InsertFakeData\obj\Debug\ConsoleApplication1.pdb

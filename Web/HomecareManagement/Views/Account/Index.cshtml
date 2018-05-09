@@ -1,0 +1,53 @@
+﻿@model HomecareManagement.Models.Web.AccountModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- alert -->
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @Html.ValidationSummary()
+    </div>
+}
+<!-- alert -->
+<div class="form-signin">
+    <h3>登入</h3>
+    <hr />
+    @using (Html.BeginForm("Logon", "Account", new { ReturnUrl = Request["ReturnUrl"] }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.TextBoxFor(model => model.username, new
+        {
+            @class = "form-control input-lg",
+            placeholder = "Username",
+            AutoComplete = "Off",
+            tabindex = "1"
+        })
+        <br />
+        @Html.PasswordFor(model => model.password, new
+        {
+            @class = "form-control input-lg",
+            placeholder = "Password",
+            AutoComplete = "Off",
+            tabindex = "2"
+        })
+        <br />
+        <br />
+        <table align="center">
+            <tr>
+                <td align="left">
+                    <button type="submit" class="btn btn-primary" id="btnLogin">登入</button>
+                </td>
+                <td align="right">
+                    <button type="reset" class="btn btn-danger" id="btnReset">清除</button>
+                </td>
+            </tr>
+        </table>
+    }
+</div>
+@Styles.Render("~/Content/site/Account.css")
+@Scripts.Render("~/Scripts/Account/Index.js")
+
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="設定">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="switchNetwork"
+            android:summary="@string/setting_network_content"
+            android:title="@string/setting_network_title" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="switchUpdate"
+            android:summary="@string/setting_update_content"
+            android:title="@string/setting_update_title" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Beacon">
+        <ListPreference
+            android:key="scanPeriodMillis"
+            android:title="@string/setting_scanPeriodMillis_title"
+            android:entries="@array/setting_scanPeriodMillis_item"
+            android:entryValues="@array/setting_scanPeriodMillis_item"
+            android:dialogTitle="@string/setting_scanPeriodMillis_title"
+            android:defaultValue="@string/setting_scanPeriodMillis_default"
+            android:summary="@string/setting_scanPeriodMillis_content" />
+        <ListPreference
+            android:key="waitTimeMillis"
+            android:title="@string/setting_waitTimeMillis_title"
+            android:entries="@array/setting_waitTimeMillis_item"
+            android:entryValues="@array/setting_waitTimeMillis_item"
+            android:dialogTitle="@string/setting_waitTimeMillis_title"
+            android:defaultValue="@string/setting_waitTimeMillis_default"
+            android:summary="@string/setting_waitTimeMillis_content" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

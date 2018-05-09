@@ -1,0 +1,16 @@
+﻿/* 登入窗 */
+
+.form-signin {
+    max-width: 450px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+    .form-signin table {
+        width: 100%;
+    }
+
+    .form-signin button {
+        width: 90%;
+        height: 45px;
+    }

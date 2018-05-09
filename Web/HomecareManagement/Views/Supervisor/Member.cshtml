@@ -1,0 +1,422 @@
+﻿@{
+    ViewBag.Title = "Member";
+}
+<button type="button" class="btn btn-primary" id="btnOpenCreate">Create</button>
+<button type="button" class="btn btn-success" id="btnGridExport">Export All</button>
+<br />
+<br />
+<div role="tabpanel">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#Attendant" aria-controls="Attendant" role="tab" data-toggle="tab">照服員</a></li>
+        <li role="presentation"><a href="#Supervisor" aria-controls="Supervisor" role="tab" data-toggle="tab">督導</a></li>
+        <li role="presentation"><a href="#Employer" aria-controls="Employer" role="tab" data-toggle="tab">案主</a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="Attendant">
+            <br />
+            <div id="gridAttendant"></div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade in" id="Supervisor">
+            <br />
+            <div id="gridSupervisor"></div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade in" id="Employer">
+            <br />
+            <div id="gridEmployer"></div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modal-Member" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+                <h4 class="modal-title"><span id="modal-Member-Title"></span></h4>
+            </div>
+            <div class="modal-body">
+                <table class="tableTitleFont tableForm">
+                    <tr>
+                        <td><h4>帳號<a>(*)</a>：</h4></td>
+                        <td><input type="text" class="form-control" id="Member-Username" placeholder="最少八位" required></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><h5><span id="Member-Username_error" class="errorMsg"></span></h5></td>
+                    </tr>
+                    <tr>
+                        <td><h4>密碼<a>(*)</a>：</h4></td>
+                        <td><input type="password" class="form-control" id="Member-Password" placeholder="最少八位" required></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><h5><span id="Member-Password_error" class="errorMsg"></span></h5></td>
+                    </tr>
+                    <tr>
+                        <td><h4>姓名<a>(*)</a>：</h4></td>
+                        <td><input type="text" class="form-control" id="Member-Displayname" required></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><h5><span id="Member-Displayname_error" class="errorMsg"></span></h5></td>
+                    </tr>
+                    <tr class="Member-Level">
+                        <td><h4>職位<a>(*)</a>：</h4></td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons" id="Member-Level">
+                                @if (Request.IsAuthenticated)
+                                {
+                                    FormsIdentity id = (FormsIdentity)User.Identity;
+                                    FormsAuthenticationTicket ticket = id.Ticket;
+                                    var UserData = ticket.UserData;
+                                    if (UserData == "1")
+                                    {
+                                        <label class="btn btn-default">
+                                            <input id="gender" type="radio" name="gender" ng-model="value" class="ng-untouched ng-valid ng-dirty">
+                                            管理員
+                                        </label>
+                                    }
+                                }
+                                <label class="btn btn-default active">
+                                    <input id="gender" type="radio" name="gender" ng-model="value" class="ng-untouched ng-valid ng-dirty ng-valid-parse" value="2">
+                                    督導
+                                </label>
+                                <label class="btn btn-default">
+                                    <input id="gender" type="radio" name="gender" ng-model="value" class="ng-untouched ng-valid ng-dirty" value="3">
+                                    照服員
+                                </label>
+                                <label class="btn btn-default">
+                                    <input id="gender" type="radio" name="gender" ng-model="value" class="ng-untouched ng-valid ng-dirty" value="4">
+                                    案主
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>生日：</h4>
+                        </td>
+                        <td>
+                            <input id="Member-Birthday">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>性別<a>(*)</a>：</h4>
+                        </td>
+                        <td>
+                            <div class="btn-group" data-toggle="buttons" id="Member-Sex">
+                                <label class="btn btn-default">
+                                    <input id="gender" type="radio" name="gender" ng-model="value" class="ng-untouched ng-valid ng-dirty ng-valid-parse" value="1">
+                                    男
+                                </label>
+                                <label class="btn btn-default active">
+                                    <input id="gender" type="radio" name="gender" ng-model="value" class="ng-untouched ng-valid ng-dirty" value="0">
+                                    女
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align:text-top;">
+                            <h4>地址：</h4>
+                        </td>
+                        <td>
+                            <div id="dk_tw_citySelector" style="margin-bottom:5px;">
+                                <select id="Member-county"></select>
+                                <select id="Member-district"></select>
+                            </div>
+                            <input type="text" class="form-control" id="Member-Address" placeholder="填寫範例：○○路○○號" style="margin-bottom:5px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>主要電話<a>(*)</a>：</h4>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="Member-Phone1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>備用電話：</h4>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="Member-Phone2">
+                        </td>
+                    </tr>
+                    @*分隔線*@
+                    <tr><td colspan="2"><hr /></td></tr>
+                    @*選擇主責督導*@
+                    <tr class="Member-Other">
+                        <td>
+                            <h4>主責督導<a>(*)</a>：</h4>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span id="Member-SupervisorListText">---請選擇---</span>&nbsp;&nbsp;<span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="Member-SupervisorList">
+                                    <li><a href="#0">---請選擇---</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    @*督導-證照*@
+                    <tr class="Member-Supervisor">
+                        <td style="vertical-align:text-top;">
+                            <h4>證照：</h4>
+                        </td>
+                        <td>
+                            <div id="Member-Supervisor-License"></div>
+                        </td>
+                    </tr>
+                    @*督導-到職日*@
+                    <tr class="Member-Supervisor">
+                        <td>
+                            <h4>到職日<a>(*)</a>：</h4>
+                        </td>
+                        <td>
+                            <input id="Member-Supervisor-Firstday">
+                        </td>
+                    </tr>
+                    @*督導-在職訓練*@
+                    <tr class="Member-Supervisor">
+                        <td style="vertical-align:text-top;">
+                            <h4>在職訓練：</h4>
+                        </td>
+                        <td>
+                            <div id="Member-Supervisor-Train">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" name="optradio" value="1">基礎訓練</label>
+                                </div>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" name="optradio" value="2">進階訓練</label>
+                                </div>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" name="optradio" value="3">成長訓練</label>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    @*督導-專業背景*@
+                    <tr class="Member-Supervisor">
+                        <td style="vertical-align:text-top;">
+                            <h4>專業背景：</h4>
+                        </td>
+                        <td>
+                            <textarea class="form-control" style="resize:none;" placeholder="專業背景" id="Member-Supervisor-proBG"></textarea>
+                        </td>
+                    </tr>
+                    @*督導-學歷*@
+                    <tr class="Member-Supervisor">
+                        <td style="vertical-align:text-top;">
+                            <h4>學歷：</h4>
+                        </td>
+                        <td>
+                            <div id="Member-Supervisor-eduBG">
+                                <div class="radio">
+                                    <label><input type="radio" name="Member-Supervisor-eduBG" value="0">國小</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Member-Supervisor-eduBG" value="1">國中</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Member-Supervisor-eduBG" value="2">高中</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Member-Supervisor-eduBG" value="3">大學</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Member-Supervisor-eduBG" value="4">大專(含)以上</label>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    @*照服員-時薪*@
+                    <tr class="Member-Attendant">
+                        <td>
+                            <div>
+                                <h4>時薪<a>(*)</a>：</h4>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" id="Member-Attendant-Pay">
+                        </td>
+                    </tr>
+                    @*照服員-到職日*@
+                    <tr class="Member-Attendant">
+                        <td>
+                            <h4>到職日<a>(*)</a>：</h4>
+                        </td>
+                        <td>
+                            <input id="Member-Attendant-Firstday">
+                        </td>
+                    </tr>
+                    @*照服員-證照*@
+                    <tr class="Member-Attendant">
+                        <td style="vertical-align:text-top;">
+                            <h4>證照：</h4>
+                        </td>
+                        <td>
+                            <div id="Member-Attendant-License"></div>
+                        </td>
+                    </tr>
+                    @*照服員-備註*@
+                    <tr class="Member-Attendant">
+                        <td style="vertical-align:text-top;">
+                            <h4>備註：</h4>
+                        </td>
+                        <td>
+                            <textarea class="form-control" style="resize:none;" placeholder="備註" id="Member-Attendant-Summary"></textarea>
+                        </td>
+                    </tr>
+                    @*案主-緊急連絡人_1*@
+                    <tr class="Member-Employer">
+                        <td>
+                            <h4>緊急聯絡人1：</h4>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="Member-Employer-emg1_Displayname">
+                        </td>
+                    </tr>
+                    <tr class="Member-Employer">
+                        <td>
+                            <h4>主要電話：</h4>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="Member-Employer-emg1_Phone1">
+                        </td>
+                    </tr>
+                    <tr class="Member-Employer">
+                        <td>
+                            <h4>備用電話：</h4>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="Member-Employer-emg1_Phone2">
+                        </td>
+                    </tr>
+                    @*案主-緊急連絡人_2*@
+                    <tr class="Member-Employer">
+                        <td>
+                            <h4>緊急聯絡人2：</h4>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="Member-Employer-emg2_Displayname">
+                        </td>
+                    </tr>
+                    <tr class="Member-Employer">
+                        <td>
+                            <h4>主要電話：</h4>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="Member-Employer-emg2_Phone1">
+                        </td>
+                    </tr>
+                    <tr class="Member-Employer">
+                        <td>
+                            <h4>備用電話：</h4>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="Member-Employer-emg2_Phone2">
+                        </td>
+                    </tr>
+                    @*案主-時數*@
+                    <tr class="Member-Employer">
+                        <td>
+                            <h4>核定時數(分)<a>(*)</a>：</h4>
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" id="Member-Employer-Minutes1">
+                        </td>
+                    </tr>
+                    <tr class="Member-Employer">
+                        <td>
+                            <h4>自費時數(分)<a>(*)</a>：</h4>
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" id="Member-Employer-Minutes2">
+                        </td>
+                    </tr>
+                    @*案主-補助身分*@
+                    <tr class="Member-Employer">
+                        <td style="vertical-align:text-top;">
+                            <h4>補助身分<a>(*)</a>：</h4>
+                        </td>
+                        <td>
+                            <div id="Member-Employer-Sub"></div>
+                        </td>
+                    </tr>
+                    @*案主-失能程度*@
+                    <tr class="Member-Employer">
+                        <td style="vertical-align:text-top;">
+                            <h4>失能程度<a>(*)</a>：</h4>
+                        </td>
+                        <td>
+                            <div id="Member-Employer-item1"></div>
+                        </td>
+                    </tr>
+                    @*案主-經濟程度*@
+                    <tr class="Member-Employer">
+                        <td style="vertical-align:text-top;">
+                            <h4>經濟程度<a>(*)</a>：</h4>
+                        </td>
+                        <td>
+                            <div id="Member-Employer-item2"></div>
+                        </td>
+                    </tr>
+                    @*案主-案主身份*@
+                    <tr class="Member-Employer">
+                        <td style="vertical-align:text-top;">
+                            <h4>案主身份<a>(*)</a>：</h4>
+                        </td>
+                        <td>
+                            <div id="Member-Employer-item3"></div>
+                        </td>
+                    </tr>
+                    @*案主-備註*@
+                    <tr class="Member-Employer">
+                        <td style="vertical-align:text-top;">
+                            <h4>備註：</h4>
+                        </td>
+                        <td>
+                            <textarea class="form-control" style="resize:none;" placeholder="備註" id="Member-Employer-Summary"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnCheckDelete">Delete</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="btnUpdate">Update</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="btnCreate">Create</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+                <h4 class="modal-title">Check</h4>
+            </div>
+            <div class="modal-body">
+                確認要刪除？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnDelete">Delete</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Styles.Render("~/Content/site/Supervisor.css")
+@Scripts.Render("~/Scripts/dk-tw-citySelector/dk-tw-citySelector.min.js")
+@Scripts.Render("~/Scripts/Supervisor/Member.js")
+@Scripts.Render("http://kendo.cdn.telerik.com/2014.3.1029/js/jszip.min.js")
